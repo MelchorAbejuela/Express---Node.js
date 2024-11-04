@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        form {
+            display: flex;
+            flex-direction: column;
+            width: 300px;
+            text-align: center;
+            margin-inline: auto;
+        }
+
+        input {
+            margin-block: 10px;
+        }
+
+        .food-result {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            width: 700px;
+            margin-inline: auto;
+            margin-top: 20px;
+            border: 1px solid black;
+            height: 30px;
+        }
+    </style>
+</head>
+
+<body>
+    <form>
+        <label for="food">Enter Food</label>
+        <input type="text" class="foods-input">
+        <button type="submit" class="submit-button">Submit</button>
+    </form>
+    <div class="food-result"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+    <script>
+        const container = document.querySelector('.food-result')
+        const fetchFoodList = async () => {
+            try {
+                const { data } = await axios.get('/api/foodlist')
+                const food = data.data.map((foodObject) => {
+                    return `<p>${foodObject.food}</p>`
+                })
+                const p = document.createElement('p')
+                p.textContent = food
+                container.innerHTML = food.join("")
+            } catch (error) {
+                container.innerHTML(error)
+            }
+        }
+        fetchFoodList()
+
+        const submitButton = document.querySelector('.submit-button')
+        const input = document.querySelector('.foods-input')
+
+        submitButton.addEventListener('click', async (e) => {
+            e.preventDefault()
+            try {
+                const newFood = input.value
+                const { data } = await axios.post('/api/foodlist', { food: newFood })
+                const p = document.createElement('p')
+                p.textContent = data.data
+                container.appendChild(p)
+            } catch (error) {
+                container.innerHTML = error
+            }
+        })
+    </script>
+
+</body>
+
+</html>

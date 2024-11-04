@@ -1,0 +1,12 @@
+app.use(express.static('./post-form')) = use static files 
+app.use(express.urlencoded({ extended: true })) = express converts that URL-encoded data into an object you can easily access using req.body
+app.use(express.json()) = express threat the data as plain text, using this will help express to read json
+
+When a form submit a data, it send it to the server in a format called URL-encoded.
+app.use(express.urlencoded({ extended: true })) is used to conver URL-encoded into json format.
+Without this middleware, req.body will be undefined or empty.
+
+There are two ways to send data, HTML or JAVASCRIPT. 
+Refer to INDEX.HTML and JAVASCRIPT.HTML for the example.
+
+

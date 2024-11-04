@@ -1,0 +1,2 @@
+1. FETCH does not automatically convert the response into JSON unlike AXIOS.
+2. 

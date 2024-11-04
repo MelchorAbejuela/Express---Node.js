@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        form {
+            display: flex;
+            flex-direction: column;
+            width: 300px;
+            text-align: center;
+            margin-inline: auto;
+        }
+
+        input {
+            margin-block: 10px;
+        }
+
+        .food-result {
+            display: flex;
+            justify-content: space-around;
+            width: 500px;
+            margin-inline: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <a href="index.html">Regular</a>
+        <a href="javascript.html">javascript</a>
+    </div>
+
+    <form action="/login" method="POST">
+        <label for="food">Enter Food</label>
+        <input type="text" name="food" class="foods-input">
+        <button type="submit" class="submit-button">Submit</button>
+    </form>
+</body>
+
+</html>
